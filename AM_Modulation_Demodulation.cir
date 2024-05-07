@@ -1,0 +1,40 @@
+.title KiCad schematic
+.include "/home/tasos/projects/circuits/AM_Modulation_Demodulation(LAB)/LM1496.lib"
+.include "/home/tasos/projects/circuits/AM_Modulation_Demodulation(LAB)/lib/TL082.301"
+.model __RV1 potentiometer( r=25k )
+.model __D1 D
+V1 Carrier_IN 0 DC 0 SIN( 0 100m 500k 0 0 0 1 ) AC 1  
+V2 Signal_IN 0 DC 0 SIN( 0 100m 2k 0 0 0 1 ) AC 1  
+C1 Carrier_IN Net-_U1--carr_in_ 0.1u
+XU2 NC-U2-0 NC-U2-1 +12V -12V NC-U2-2 TL082
+XU3 Net-_U3A-+_ Net-_U3A--_ NC-U3-0 NC-U3-1 ModCarrier TL082
+R16 0 Net-_U3A--_ 25k
+R15 Net-_U3A-+_ ModCarrier 25k
+V3 +12V 0 DC +12V 
+V4 -12V 0 DC -12V 
+R18 0 /Demod2 27k
+C7 /Demod2 OUTPUT 0.1u
+R11 0 Signal_IN 51
+R9 Net-_U1--sig_in_ Net-_R9-Pad2_ 750
+R19 0 OUTPUT 16k
+R8 Signal_IN Net-_R8-Pad2_ 750
+ARV1 Net-_R9-Pad2_ -12V Net-_R8-Pad2_ __RV1
+R14 Net-_U1-+out_ Net-_U3A--_ 25k
+R6 Net-_U1--out_ +12V 3.9k
+R7 Net-_U1-+out_ +12V 3.9k
+R13 Net-_U1--out_ Net-_U3A-+_ 25k
+C3 +12V 0 0.1u
+R4 Net-_U1-gain1_ Net-_U1-gain2_ 1k
+R3 Net-_U1-+carr_in_ +12V 1k
+R2 0 Net-_U1-+carr_in_ 1k
+C2 Net-_U1-+carr_in_ 0 0.1u
+R1 Net-_U1--carr_in_ Net-_U1-+carr_in_ 51
+XU1 Signal_IN Net-_U1-gain1_ Net-_U1-gain2_ Net-_U1--sig_in_ Net-_U1-bias_ Net-_U1--out_ Net-_U1-+carr_in_ Net-_U1--carr_in_ Net-_U1-+out_ -12V LM1496H
+R12 0 Net-_U1--sig_in_ 51
+R5 0 Net-_U1-bias_ 10k
+C4 -12V 0 0.1u
+C6 /Demod2 0 470p
+D1 ModCarrier /Demod1 __D1
+C5 /Demod1 0 820p
+R17 /Demod1 /Demod2 4.7k
+.end
