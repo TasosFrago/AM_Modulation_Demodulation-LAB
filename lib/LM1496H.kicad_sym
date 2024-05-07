@@ -33,7 +33,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://pdf.datasheetcatalog.com/datasheets/166/64015_DS.pdf"
 			(at 0 0 0)
 			(effects
 				(font
